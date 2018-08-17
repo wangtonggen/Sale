@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="base_button_warp_warp_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="base_button_match_warp_style" parent="base_button_warp_warp_style">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="base_button_warp_match_style" parent="base_button_warp_warp_style">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="base_button_match_match_style" parent="base_button_warp_warp_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!--通用的按钮样式-->
+    <style name="button_common_style" parent="base_button_match_warp_style">
+        <item name="android:layout_height">@dimen/dp_btn_login_height</item>
+        <item name="android:textSize">@dimen/size_btn_login_text</item>
+        <item name="android:layout_margin">@dimen/dp_10</item>
+        <item name="android:textColor">@color/colorBtnText</item>
+        <item name="android:background">@drawable/selector_btn_login</item>
+    </style>
+</resources>

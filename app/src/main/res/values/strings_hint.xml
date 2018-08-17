@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_account">请输入用户名</string>
+    <string name="hint_password">请输入密码</string>
+    <string name="hint_login">登录</string>
+
+
+    <string name="hint_progress_default">正在加载</string>
+    <string name="hint_progress_login">正在登录...</string>
+</resources>

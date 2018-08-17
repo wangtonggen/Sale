@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--按钮的点击颜色变化效果-->
+    <color name="colorBtnNormal">@color/colorPrimary</color>
+    <color name="colorBtnPressed">@color/colorPrimaryDark</color>
+    <color name="colorBtnText">@color/white</color>
+
+    <color name="white">#ffffff</color>
+</resources>
