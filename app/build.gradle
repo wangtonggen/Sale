@@ -24,13 +24,13 @@ android {
             // 移除无用的resource文件
             shrinkResources true
             //是否打印log
-            buildConfigField "String", "HOST", "\"http://wb1919.com:8081/engine/\""
+            buildConfigField "String", "HOST", "\"http://192.168.2.248:8080/engine/\""
             //正式服务器
             buildConfigField "boolean", "LOG", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             android.applicationVariants.all {
                 outputs.all {
-                    outputFileName = "万帮销售_" + buildType.name + "-v" + defaultConfig.versionCode+"_"+defaultConfig.versionName + ".apk"
+                    outputFileName = "wtg_" + buildType.name + "-v" + defaultConfig.versionCode+"_"+defaultConfig.versionName + ".apk"
                 }
             }
         }
@@ -48,7 +48,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             android.applicationVariants.all {
                 outputs.all {
-                    outputFileName = "万帮销售_" + buildType.name + "-v" + defaultConfig.versionCode+"_"+defaultConfig.versionName + ".apk"
+                    outputFileName = "wtg_" + buildType.name + "-v" + defaultConfig.versionCode+"_"+defaultConfig.versionName + ".apk"
                 }
             }
         }

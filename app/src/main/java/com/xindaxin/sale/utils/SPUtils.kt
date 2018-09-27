@@ -11,7 +11,7 @@ import com.xindaxin.sale.base.BaseApplication
  * Desc sp的保存和取值
  */
 object SPUtils {
-    private val SP_NAME = "sale"
+    private const val SP_NAME = "sale"
     private var preferences: SharedPreferences? = null
 
     private fun instance(name: String) {
@@ -46,6 +46,9 @@ object SPUtils {
         editor.apply()
     }
 
+    /**
+     * 获取int值
+     */
     fun getInteger(name: String, key: String): Int {
         instance(name)
         return preferences!!.getInt(key, -1)

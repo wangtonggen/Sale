@@ -10,6 +10,7 @@ import com.xindaxin.sale.utils.LogUtils
 import com.xindaxin.sale.utils.ProgressDialogUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.view_toolbar.*
+import org.jetbrains.anko.toast
 
 /**
  * 创建者：王统根
@@ -51,7 +52,8 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun loginSuccess(loginBean: HttpResponse<LoginBean>) {
-        LogUtils.e(TAG, loginBean.toString())
+        toast(loginBean.msg)//使用Anko
+//        LogUtils.e(TAG, loginBean.toString())
     }
 
 }

@@ -21,11 +21,6 @@ open class LoginContract {
          * @param imobile 登录标识
          */
         fun login(account: String, password: String, imobile: Int)
-
-        /**
-         * 验证数据
-         */
-        fun checkData(): Boolean
     }
 
     interface LoginView : IBaseDialogView {

@@ -20,7 +20,7 @@ object SDCardUtils {
      * 获取sd卡的地址
      */
     fun getSDCardPathByEnvironment(): String {
-        return if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
+        return if (isSDCardEnableByEnvironment()) {
             Environment.getExternalStorageDirectory().absolutePath
         } else ""
     }

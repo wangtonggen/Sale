@@ -29,4 +29,11 @@ object StringUtils {
      */
     fun getEncodeMobile(mobile: String): String = mobile.substring(0, mobile.length - mobile.substring(3).length) + "****" + mobile.substring(7)
 
+    /**
+     * 字符串模板封装
+     */
+    fun stringFormat(hint:String,content:String):String{
+        return "$hint$content"
+    }
+
 }

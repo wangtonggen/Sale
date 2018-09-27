@@ -2,6 +2,7 @@ package com.xindaxin.sale.utils
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -11,5 +12,21 @@ import java.text.SimpleDateFormat
  */
 object TimeUtils {
     @SuppressLint("SimpleDateFormat")
-    private val DEFAULT_FORMAT = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    val DEFAULT_FORMAT = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA)
+    @SuppressLint("SimpleDateFormat")
+    val DEFAULT_FORMAT_NO_HOUR = SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
+    @SuppressLint("SimpleDateFormat")
+    val DEFAULT_FORMAT_NO_MINUTE = SimpleDateFormat("yyyy-MM-dd HH", Locale.CHINA)
+    @SuppressLint("SimpleDateFormat")
+    val DEFAULT_FORMAT_NO_SECOND = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA)
+
+    /**
+     * 时间格式化(可添加字符串格式化)
+     */
+    @JvmOverloads
+    fun formatTime(obj: Any, format: SimpleDateFormat = DEFAULT_FORMAT, originalFormat: String? = null): String {
+        return if (obj is String && originalFormat != null) {
+            format.format(SimpleDateFormat(originalFormat, Locale.CHINA).parse(obj))
+        } else format.format(obj)
+    }
 }
