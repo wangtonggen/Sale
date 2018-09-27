@@ -1,20 +1,15 @@
 package com.xindaxin.sale.ui.activity
 
-import android.view.View
 import com.xindaxin.sale.R
 import com.xindaxin.sale.base.BaseActivity
 import com.xindaxin.sale.bean.LoginBean
 import com.xindaxin.sale.mvp.base.HttpResponse
-import com.xindaxin.sale.mvp.base.IBaseRequestCallBack
 import com.xindaxin.sale.mvp.contract.LoginContract
-import com.xindaxin.sale.mvp.model.LoginModel
 import com.xindaxin.sale.mvp.presenter.LoginPresenterImp
 import com.xindaxin.sale.utils.LogUtils
 import com.xindaxin.sale.utils.ProgressDialogUtils
-import com.xindaxin.sale.utils.ThreadPoolUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.view_toolbar.*
-import org.jetbrains.anko.toast
 
 /**
  * 创建者：王统根
@@ -28,7 +23,8 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun initView() {
-        initNoIconToolbar(toolbar, R.string.title_login)
+        initNoIconToolbar(toolbar1, R.string.title_login)
+        initToolbar(toolbar1,R.string.title_login);
         loginPresenter = LoginPresenterImp(this)
 
 //        ThreadPoolUtils.getInstance().execute(Runnable {  })
