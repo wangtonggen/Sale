@@ -12,12 +12,12 @@ object RegexConstant {
     const val REGEX_MOBILE_SIMPLE = "^[1]\\d{10}$"
 
     /**
-     * 验证电话(更准确)
+     * 验证手机号(更准确)
      */
     const val REGEX_MOBILE_EXACT = "^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(16[6])|(17[0,1,3,5-8])|(18[0-9])|(19[8,9]))\\d{8}$"
 
     /**
-     * 验证手机号
+     * 验证电话
      */
     const val REGEX_TEL = "^0\\d{2,3}[- ]?\\d{7,8}"
 

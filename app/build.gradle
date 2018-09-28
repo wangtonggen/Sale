@@ -24,13 +24,13 @@ android {
             // 移除无用的resource文件
             shrinkResources true
             //是否打印log
-            buildConfigField "String", "HOST", "\"http://192.168.2.248:8080/engine/\""
-            //正式服务器
             buildConfigField "boolean", "LOG", "false"
+            //正式服务器
+            buildConfigField "String", "HOST", "\"http://192.168.2.248:8080/engine/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             android.applicationVariants.all {
                 outputs.all {
-                    outputFileName = "wtg_" + buildType.name + "-v" + defaultConfig.versionCode+"_"+defaultConfig.versionName + ".apk"
+                    outputFileName = "wtg_" + buildType.name + "-v" + defaultConfig.versionCode + "_" + defaultConfig.versionName + ".apk"
                 }
             }
         }
@@ -48,7 +48,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             android.applicationVariants.all {
                 outputs.all {
-                    outputFileName = "wtg_" + buildType.name + "-v" + defaultConfig.versionCode+"_"+defaultConfig.versionName + ".apk"
+                    outputFileName = "wtg_" + buildType.name + "-v" + defaultConfig.versionCode + "_" + defaultConfig.versionName + ".apk"
                 }
             }
         }
@@ -71,9 +71,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    //kotlin
+    //kotlin和Anko
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-//    implementation "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     implementation "org.jetbrains.anko:anko:$anko_version"
     //rxJava+retrofit 网络框架
     implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
