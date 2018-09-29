@@ -12,7 +12,6 @@ class DBHelper(context: Context) : ManagedSQLiteOpenHelper(context, DB_NAME, nul
     companion object {
         private val DB_NAME = "sale.db"//数据库的名字
         private val DATABASE_VERSION = 1
-        val USER_TABLE = "t_user"//用户表的数据表
 
         private var instance: DBHelper? = null
         @Synchronized
