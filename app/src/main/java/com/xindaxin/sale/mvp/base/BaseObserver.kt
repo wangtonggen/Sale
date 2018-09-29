@@ -2,6 +2,7 @@ package com.xindaxin.sale.mvp.base
 
 import com.xindaxin.sale.utils.LogUtils
 import com.xindaxin.sale.utils.ToastUtils
+import com.xindaxin.sale.utils.sub.SubscriptionManager
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import retrofit2.HttpException
@@ -16,12 +17,12 @@ abstract class BaseObserver<T> : Observer<HttpResponse<T>> {
     private lateinit var d: Disposable
     override fun onComplete() {
         complete()
-        unSubscribe()
+        SubscriptionManager.instance.cancelSub(d)
     }
 
     override fun onSubscribe(d: Disposable) {
         this.d = d
-        LogUtils.e("bbb", d.toString())
+        SubscriptionManager.instance.addSub(d)
     }
 
     override fun onNext(t: HttpResponse<T>) {//数据请求成功的统一处理
@@ -33,7 +34,7 @@ abstract class BaseObserver<T> : Observer<HttpResponse<T>> {
     }
 
     override fun onError(e: Throwable) {
-        unSubscribe()
+        SubscriptionManager.instance.cancelSub(d)
         error()
         LogUtils.e(TAG, e.message!!.toString())//打印错误
         when (e) {//异常统一处理
@@ -45,17 +46,7 @@ abstract class BaseObserver<T> : Observer<HttpResponse<T>> {
     }
 
     /**
-     * 取消订阅
-     */
-    private fun unSubscribe() {
-        if (!d.isDisposed) {
-            d.dispose()
-            LogUtils.e("aaa", d.toString())
-        }
-    }
-
-    /**
-     * 数据请求完成的操作
+     * 数据请求完成的操作(填充数据)
      */
     abstract fun success(data: HttpResponse<T>)
 

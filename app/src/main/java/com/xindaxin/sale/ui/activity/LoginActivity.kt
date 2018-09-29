@@ -6,7 +6,6 @@ import com.xindaxin.sale.bean.LoginBean
 import com.xindaxin.sale.mvp.base.HttpResponse
 import com.xindaxin.sale.mvp.contract.LoginContract
 import com.xindaxin.sale.mvp.presenter.LoginPresenterImp
-import com.xindaxin.sale.utils.LogUtils
 import com.xindaxin.sale.utils.ProgressDialogUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.view_toolbar.*
@@ -25,9 +24,9 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     override fun initView() {
         initNoIconToolbar(toolbar1, R.string.title_login)
-        initToolbar(toolbar1,R.string.title_login);
         loginPresenter = LoginPresenterImp(this)
-
+//        var dbUserUtils = DBUserUtils(this,User.TABLE_NAME)
+//        dbUserUtils.delete()
 //        ThreadPoolUtils.getInstance().execute(Runnable {  })
     }
 

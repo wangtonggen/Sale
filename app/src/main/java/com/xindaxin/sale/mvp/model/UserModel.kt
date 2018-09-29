@@ -16,7 +16,7 @@ import io.reactivex.schedulers.Schedulers
  * @desc: 用户的数据处理类
  *
  **/
-class UserModel {
+class UserModel() {
     private val userService: UserService by lazy { ServiceFactory.getInstance().createService(UserService::class.java) }
     /**
      * 登录
