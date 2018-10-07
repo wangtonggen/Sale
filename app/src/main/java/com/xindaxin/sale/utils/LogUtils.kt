@@ -10,13 +10,17 @@ import com.xindaxin.sale.BuildConfig
  */
 object LogUtils {
 
-    fun e(tag: String, message: String?) {
-        if (BuildConfig.LOG)
-            Log.e(tag, message)
+    fun e(tag: String, message: Any?) {
+        if (BuildConfig.LOG) {
+            var msg = "$message"
+            Log.e(tag, msg)
+        }
     }
 
-    fun d(tag: String, message: String?) {
-        if (BuildConfig.LOG)
-            Log.e(tag, message)
+    fun d(tag: String, message: Any?) {
+        if (BuildConfig.LOG) {
+            var msg = "$message"
+            Log.e(tag, msg)
+        }
     }
 }

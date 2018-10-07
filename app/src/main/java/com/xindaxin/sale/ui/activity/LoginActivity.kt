@@ -1,5 +1,7 @@
 package com.xindaxin.sale.ui.activity
 
+import android.content.Intent
+import android.os.Handler
 import com.xindaxin.sale.R
 import com.xindaxin.sale.base.BaseActivity
 import com.xindaxin.sale.bean.LoginBean
@@ -18,6 +20,7 @@ import org.jetbrains.anko.toast
  */
 class LoginActivity : BaseActivity(), LoginContract.LoginView {
     private lateinit var loginPresenter: LoginPresenterImp
+    //    private var list = listOf("111","222","333","444")
     override fun getResLayoutId(): Int {
         return R.layout.activity_login
     }
@@ -25,13 +28,24 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     override fun initView() {
         initNoIconToolbar(toolbar1, R.string.title_login)
         loginPresenter = LoginPresenterImp(this)
+
+//        LogUtils.e(TAG,list.count())
+//        LogUtils.e(TAG,list.size)
+//        LogUtils.e(TAG,list.filter { it.length > 1 })
+//        list.filter { it.startsWith("w") }
 //        var dbUserUtils = DBUserUtils(this,User.TABLE_NAME)
 //        dbUserUtils.delete()
 //        ThreadPoolUtils.getInstance().execute(Runnable {  })
     }
 
     override fun onClickListener() {
-        btn_login.setOnClickListener { loginPresenter.login(getAccount(), getPassword(), 222777) }
+        btn_login.setOnClickListener {
+//            loginPresenter.login(getAccount(), getPassword(), 222777)
+            showDialog()
+            Handler().postAtTime({
+                cancelDialog()
+                startActivity(Intent(this@LoginActivity,MainActivity::class.java))},2000)
+        }
     }
 
     override fun showDialog() {
@@ -51,8 +65,8 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun loginSuccess(loginBean: HttpResponse<LoginBean>) {
-        toast(loginBean.msg)//使用Anko
-//        LogUtils.e(TAG, loginBean.toString())
+        toast(loginBean.msg)
+        Handler().postAtTime({ print("hahaaha") }, 2000)
     }
 
 }

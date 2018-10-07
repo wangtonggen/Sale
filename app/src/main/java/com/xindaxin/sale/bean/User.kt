@@ -7,4 +7,4 @@ package com.xindaxin.sale.bean
  * @desc:
  *
  **/
-data class User(var _id:Int,var id:Int,var token:String,var name:String,var account:String,var password:String)
+data class User(var _id: Int, var id: Int, var token: String, var name: String, var account: String, var password: String)

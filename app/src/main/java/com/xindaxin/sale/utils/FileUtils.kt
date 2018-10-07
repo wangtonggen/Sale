@@ -1,6 +1,5 @@
 package com.xindaxin.sale.utils
 
-import android.text.TextUtils
 import java.io.File
 
 /**
@@ -12,7 +11,7 @@ object FileUtils {
     /**
      * 获取文件
      */
-    fun getFileByPath(filePath:String):File{
+    fun getFileByPath(filePath: String): File {
         return File(filePath)
     }
 
@@ -36,6 +35,7 @@ object FileUtils {
     fun rename(filePath: String, newName: String): Boolean {
         return rename(getFileByPath(filePath), newName)
     }
+
     /**
      * 文件重命名
      */
@@ -82,28 +82,28 @@ object FileUtils {
     /**
      * 创建文件
      */
-    fun createFile(filePath: String):Boolean{
+    fun createFile(filePath: String): Boolean {
         return createFile(getFileByPath(filePath))
     }
 
     /**
      * 创建文件
      */
-    fun createFile(file: File?):Boolean{
-        return file!=null && if (file.exists()) false else file.createNewFile()
+    fun createFile(file: File?): Boolean {
+        return file != null && if (file.exists()) false else file.createNewFile()
     }
 
     /**
      * 创建文件夹
      */
-    fun creataDir(filePath: String):Boolean{
+    fun creataDir(filePath: String): Boolean {
         return createDir(getFileByPath(filePath))
     }
 
     /**
      * 创建文件夹
      */
-    fun createDir(file: File?):Boolean{
-        return file!=null && if (file.exists()) false else file.mkdirs()
+    fun createDir(file: File?): Boolean {
+        return file != null && if (file.exists()) false else file.mkdirs()
     }
 }

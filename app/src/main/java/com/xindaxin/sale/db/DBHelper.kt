@@ -22,14 +22,15 @@ class DBHelper(context: Context) : ManagedSQLiteOpenHelper(context, DB_NAME, nul
             return instance!!
         }
     }
+
     val Context.database: DBHelper
         get() = DBHelper.instance(applicationContext)
 
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
-        sqLiteDatabase.createTable(User.TABLE_NAME,true,User._ID to TEXT + PRIMARY_KEY,User.ID to TEXT,User.TOKEN to TEXT,User.NAME to TEXT,User.ACCOUNT to TEXT,User.PASSWORD to TEXT)
+        sqLiteDatabase.createTable(User.TABLE_NAME, true, User._ID to TEXT + PRIMARY_KEY, User.ID to TEXT, User.TOKEN to TEXT, User.NAME to TEXT, User.ACCOUNT to TEXT, User.PASSWORD to TEXT)
     }
 
     override fun onUpgrade(sqLiteDatabase: SQLiteDatabase, i: Int, i1: Int) {
-        sqLiteDatabase.dropTable(User.TABLE_NAME,true)
+        sqLiteDatabase.dropTable(User.TABLE_NAME, true)
     }
 }

@@ -12,7 +12,7 @@ class RegexUtilsTest {
 
     @Test
     fun isMobileSimple() {
-        print(RegexUtils.isMobileSimple("15727960191"))
+        println(RegexUtils.isMobileSimple("15727960191"))
     }
 
     @Test
@@ -32,7 +32,7 @@ class RegexUtilsTest {
 
     @Test
     fun isIDCard18() {
-        print(RegexUtils.isIDCard18("412326199005146033"))
+        print(RegexUtils.isIDCard18("412326199108146033"))
     }
 
     @Test

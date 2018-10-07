@@ -2,6 +2,7 @@ package com.xindaxin.sale.mvp.service
 
 import com.xindaxin.sale.API.API
 import com.xindaxin.sale.bean.LoginBean
+import com.xindaxin.sale.mvp.base.BaseObservable
 import com.xindaxin.sale.mvp.base.HttpResponse
 import io.reactivex.Observable
 import retrofit2.http.Field
@@ -22,7 +23,7 @@ interface UserService {
      */
     @FormUrlEncoded
     @POST(API.URL_LOGIN)
-    fun login(@Field("username") userName: String, @Field("password") password: String, @Field("imobile") imobile: Int): Observable<HttpResponse<LoginBean>>
+    fun login(@Field("username") userName: String, @Field("password") password: String, @Field("imobile") imobile: Int): BaseObservable<LoginBean>
 
     /**
      * 注册

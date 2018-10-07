@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable
  * @desc: rxjava2+retrofit2订阅关系的处理
  */
 class SubscriptionManager private constructor() : SubscriptionHelper {
-//    private var map: Map<String, CompositeDisposable>? = null//通过map关联
+    //    private var map: Map<String, CompositeDisposable>? = null//通过map关联
     private var mDisposables: CompositeDisposable? = null
 
     init {

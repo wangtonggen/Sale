@@ -12,7 +12,8 @@ import com.xindaxin.sale.mvp.model.UserModel
  * 描述：登录的presenter
  */
 class LoginPresenterImp(val view: LoginContract.LoginView) : LoginContract.LoginPresenter {
-    private val userModel: UserModel by lazy {//当使用的时候在初始化
+    private val userModel: UserModel by lazy {
+        //当使用的时候在初始化
         UserModel()
     }
 

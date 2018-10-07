@@ -8,6 +8,7 @@ import com.xindaxin.sale.mvp.base.ServiceFactory
 import com.xindaxin.sale.mvp.service.UserService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import rx.Observable
 
 /**
  * @author: wtg by 2018/9/27 0027
@@ -16,7 +17,7 @@ import io.reactivex.schedulers.Schedulers
  * @desc: 用户的数据处理类
  *
  **/
-class UserModel() {
+class UserModel {
     private val userService: UserService by lazy { ServiceFactory.getInstance().createService(UserService::class.java) }
     /**
      * 登录

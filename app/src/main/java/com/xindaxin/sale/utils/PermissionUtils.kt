@@ -1,112 +1,91 @@
 package com.xindaxin.sale.utils
 
-import android.Manifest
 import android.annotation.TargetApi
 import android.app.Activity
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import com.xindaxin.sale.listener.OnPermissionListener
-import java.util.ArrayList
 
 /**
- * 创建者：王统根
- * 时间：2018-07-28
- * 描述：权限的工具类
- */
-object PermissionUtils {
-    //录制视频权限
-    private val PERMISSION_RECORD_AUDIO = Manifest.permission.RECORD_AUDIO
-    //获取联系人权限
-    private val PERMISSION_READ_CONTACTS = Manifest.permission.READ_CONTACTS
-    //电话状态的权限
-    private val PERMISSION_READ_PHONE_STATE = Manifest.permission.READ_PHONE_STATE
-    //打电话权限
-    private val PERMISSION_CALL_PHONE = Manifest.permission.CALL_PHONE
-    //手机摄像头的权限
-    private val PERMISSION_CAMERA = Manifest.permission.CAMERA
-    //获取位置的权限
-    private val PERMISSION_ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
-    private val PERMISSION_ACCESS_COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION
-    //读取内存卡的权限
-    private val PERMISSION_READ_EXTERNAL_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE
-    //写入内存卡的权限
-    private val PERMISSION_WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
-    //    private static String[] strPermissions;
+ * @author: wtg by 2018/10/7 0007
+ *
+ *
+ * @desc: 权限的工具类
+ *
+ **/
+class PermissionUtils private constructor() {
     private var mOnPermissionListener: OnPermissionListener? = null
-    private var mRequestCode = -1
+    //用来存储权限
+    private var localPermissions = mutableListOf<String>()
 
-    /**
-     * 判断是否是当前版本是否大于api23版本
-     *
-     * @param activity
-     * @param requestCode
-     * @param permissions
-     * @param listener
-     */
-    fun requestPermissions(activity: Activity, requestCode: Int, permissions: Array<String>, listener: OnPermissionListener) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//判断是否需要申请权限
-            applyPermission(activity, requestCode, permissions, listener)
-        } else {//如果低于6.0版本直接申请成功
-            listener.onPermissionGranted()
-        }
-    }
-
-    /**
-     * 获取所有需要的权限
-     *
-     * @param activity
-     * @param requestCode
-     * @param listener
-     */
-    fun requestAllPermissions(activity: Activity, requestCode: Int, listener: OnPermissionListener) {
-        val allPre = arrayOf(PERMISSION_RECORD_AUDIO, PERMISSION_CALL_PHONE, PERMISSION_CAMERA, PERMISSION_ACCESS_FINE_LOCATION, PERMISSION_ACCESS_COARSE_LOCATION, PERMISSION_READ_EXTERNAL_STORAGE, PERMISSION_WRITE_EXTERNAL_STORAGE, PERMISSION_READ_PHONE_STATE)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//判断是否需要申请权限
-            applyPermission(activity, requestCode, allPre, listener)
-        } else {//如果低于6.0版本直接申请成功
-            listener.onPermissionGranted()
-        }
-    }
-
-    /**
-     * 申请权限
-     *
-     * @param activity
-     * @param requestCode
-     * @param permissions
-     * @param listener
-     */
-    @TargetApi(Build.VERSION_CODES.M)
-    private fun applyPermission(activity: Activity, requestCode: Int, permissions: Array<String>, listener: OnPermissionListener) {
-        if (activity is Activity) {
-            mOnPermissionListener = listener
-            val deniedPermissions = getDeniedPermissions(activity, *permissions)
-            if (deniedPermissions.size > 0) {
-                mRequestCode = requestCode
-                ActivityCompat.requestPermissions(activity,
-                        permissions,
-                        requestCode)
-            } else {
-                if (mOnPermissionListener != null)
-                    mOnPermissionListener!!.onPermissionGranted()
+    companion object {
+        private var instance: PermissionUtils? = null
+        fun getInstance(): PermissionUtils {
+            if (instance == null) {
+                synchronized(PermissionUtils::class.java) {
+                    if (instance == null) {
+                        instance = PermissionUtils()
+                    }
+                }
             }
-        } else {
-            throw RuntimeException("Context must be an Activity")
+            return instance!!
         }
     }
 
     /**
-     * 单个权限的申请
-     *
-     * @param
-     * @param requestCode
-     * @param permissions
-     * @param listener
+     * 添加权限
+     * @param permission String
+     * @return PermissionUtils1
      */
-    fun requestPermissions(activity: Activity, requestCode: Int, permissions: String, listener: OnPermissionListener) {
-        requestPermissions(activity, requestCode, arrayOf(permissions), listener)
+    fun addPermission(permission: String): PermissionUtils {
+        if (!localPermissions.contains(permission))
+            localPermissions.add(permission)
+        return this
+    }
+
+    /**
+     * 添加权限
+     * @param permissions List<String>
+     * @return PermissionUtils1
+     */
+    fun addPermission(permissions: List<String>): PermissionUtils {
+        permissions.forEach {
+            if (!localPermissions.contains(it))
+                localPermissions.add(it)
+        }
+        return this
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @JvmOverloads
+    fun applyPermission(activity: Activity, requestCode: Int, listener: OnPermissionListener, permissions: List<String>? = null) {
+        mOnPermissionListener = listener
+        if (!versionCheck()) {
+            listener.onPermissionGranted()
+            return
+        }
+        if (permissions != null)
+            permissions!!.forEach {
+                if (!localPermissions.contains(it))
+                    localPermissions.add(it)
+            }
+        ActivityCompat.requestPermissions(activity, localPermissions.toTypedArray(), requestCode)
+    }
+
+    /**
+     * 判断是否授权
+     *
+     * @param grantResults
+     * @return
+     */
+    private fun verifyPermissions(grantResults: IntArray?): Boolean {
+        for (grantResult in grantResults!!) {
+            if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                return false
+            }
+        }
+        return true
     }
 
     /**
@@ -116,45 +95,23 @@ object PermissionUtils {
      * @param permissions
      * @param grantResults
      */
-    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (mRequestCode != -1 && requestCode == mRequestCode) {
-            if (mOnPermissionListener != null) {
-                if (verifyPermissions(grantResults)) {
-                    mOnPermissionListener!!.onPermissionGranted()//申请成功
-                } else {
-                    mOnPermissionListener!!.onPermissionDenied()//申请失败
-                }
+    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        LogUtils.e("tag", "进来了")
+        if (mOnPermissionListener != null) {
+            if (verifyPermissions(grantResults)) {
+                localPermissions.clear()
+                mOnPermissionListener!!.onPermissionGranted()//申请成功
+            } else {
+                mOnPermissionListener!!.onPermissionDenied()//申请失败
             }
         }
     }
 
     /**
-     * @param context
-     * @param permissions
-     * @return
+     * 判断版本是否需要申请权限
+     * @return Boolean true 需要申请权限
      */
-    private fun getDeniedPermissions(context: Context, vararg permissions: String): List<String> {
-        val deniedPermissions = ArrayList<String>()
-        for (permission in permissions) {
-            if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED) {
-                deniedPermissions.add(permission)
-            }
-        }
-        return deniedPermissions
-    }
-
-    /**
-     * 判断是否授权
-     *
-     * @param grantResults
-     * @return
-     */
-    private fun verifyPermissions(grantResults: IntArray): Boolean {
-        for (grantResult in grantResults) {
-            if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                return false
-            }
-        }
-        return true
+    private fun versionCheck(): Boolean {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
     }
 }

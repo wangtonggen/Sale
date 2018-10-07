@@ -100,6 +100,7 @@ class ActivityManager private constructor() {
             activityMgr.killBackgroundProcesses(context.packageName)
             System.exit(0)
         } catch (e: Exception) {
+//            LogUtils.e(TAG, e.message)
             LogUtils.e(TAG, e.message)
         }
 

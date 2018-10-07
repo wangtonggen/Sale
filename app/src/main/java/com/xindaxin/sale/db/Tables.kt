@@ -8,7 +8,7 @@ package com.xindaxin.sale.db
  *
  **/
 
-object User{
+object User {
     val TABLE_NAME = "t_user"
     val _ID = "_id"
     val ID = "id"

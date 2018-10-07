@@ -14,9 +14,9 @@ object SPUtils {
     private const val SP_NAME = "sale"
     private var preferences: SharedPreferences? = null
 
-    private fun instance(name: String) {
+    private fun instance() {
         if (preferences == null) {
-            preferences = BaseApplication.instance.getSharedPreferences(name, Context.MODE_PRIVATE)
+            preferences = BaseApplication.instance.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
         }
     }
 
@@ -28,7 +28,7 @@ object SPUtils {
      * @return
      */
     fun getString(name: String, key: String): String? {
-        instance(name)
+        instance()
         return preferences!!.getString(key, null)
     }
 
@@ -40,7 +40,7 @@ object SPUtils {
      * @param value
      */
     fun setString(name: String, key: String, value: String) {
-        instance(name)
+        instance()
         val editor = preferences!!.edit()
         editor.putString(key, value)
         editor.apply()
@@ -50,12 +50,12 @@ object SPUtils {
      * 获取int值
      */
     fun getInteger(name: String, key: String): Int {
-        instance(name)
+        instance()
         return preferences!!.getInt(key, -1)
     }
 
     fun setInteger(name: String, key: String, value: Int) {
-        instance(name)
+        instance()
         val editor = preferences!!.edit()
         editor.putInt(key, value)
         editor.apply()
@@ -69,7 +69,7 @@ object SPUtils {
      * @return
      */
     fun getBoolean(name: String, key: String): Boolean {
-        instance(name)
+        instance()
         return preferences!!.getBoolean(key, false)
     }
 
@@ -81,7 +81,7 @@ object SPUtils {
      * @param value
      */
     fun setBoolean(name: String, key: String, value: Boolean) {
-        instance(name)
+        instance()
         val editor = preferences!!.edit()
         editor.putBoolean(key, value)
         editor.apply()
