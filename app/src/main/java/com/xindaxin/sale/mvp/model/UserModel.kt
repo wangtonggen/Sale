@@ -19,68 +19,27 @@ import io.reactivex.schedulers.Schedulers
  *
  **/
 class UserModel : BaseModel(){
-    private val userService: UserService by lazy { ServiceFactory.getInstance().createService(UserService::class.java) }
+//    private val userService: UserService by lazy { ServiceFactory.getInstance().createService(UserService::class.java) }
     /**
      * 登录
-     * @param username 用户名
-     * @param password 密码
-     * @param imobile 登录端标识符
-     * @param iBaseRequestCallBack 数据返回接口
+     * @param params 参数集合
+     * @param observer 数据返回接口
      */
-    fun login(username: String, password: String, imobile: Int, iBaseRequestCallBack: IBaseRequestCallBack<LoginBean>) {
-//        commonService.reuqest<LoginBean>().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : BaseObserver<LoginBean>(){
-//            override fun success(data: HttpResponse<LoginBean>) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun error() {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun complete() {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//        })
-        userService.login(username, password, imobile)
-                .subscribeOn(Schedulers.io())
+    fun login(params:Map<String,Any>, observer: BaseObserver<LoginBean>) {
+        commonService.reuqestPost<LoginBean>(API.URL_LOGIN,params).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : BaseObserver<LoginBean>() {
-                    override fun success(data: HttpResponse<LoginBean>) {
-                        iBaseRequestCallBack.requestSuccess(data)
-                    }
-
-                    override fun error() {
-                        iBaseRequestCallBack.requestError()
-                    }
-
-                    override fun complete() {
-                        iBaseRequestCallBack.requestComplete()
-                    }
-                }
-
-                )
-
+                .subscribe(observer)
     }
 
     /**
      * 注册
+     * @param params Map<String, Any>
+     * @param observer BaseObserver<String>
      */
-    fun register(username: String, password: String, iBaseRequestCallBack: IBaseRequestCallBack<String>) {
-        userService.register(username, password)
+    fun register(params: Map<String, Any>, observer: BaseObserver<String>) {
+        commonService.reuqestPost<String>(API.URL_REGISTER,params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : BaseObserver<String>() {
-                    override fun success(data: HttpResponse<String>) {
-                        iBaseRequestCallBack.requestSuccess(data)
-                    }
-
-                    override fun error() {
-                        iBaseRequestCallBack.requestError()
-                    }
-
-                    override fun complete() {
-                        iBaseRequestCallBack.requestComplete()
-                    }
-                })
+                .subscribe()
     }
 }

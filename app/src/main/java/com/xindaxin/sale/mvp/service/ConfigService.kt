@@ -7,5 +7,6 @@ package com.xindaxin.sale.mvp.service
  * @desc: 配置文件的service
  *
  **/
+@Deprecated("已经用CommonService来代替")
 interface ConfigService {
 }

@@ -19,11 +19,9 @@ open class UserContract {
 
         /**
          * 登录操作
-         * @param account 用户名
-         * @param password 密码
-         * @param imobile 登录标识
+         * @param params 参数
          */
-        fun login(account: String, password: String, imobile: Int)
+        fun login(params:Map<String,Any>)
     }
 
     interface LoginView : IBaseDialogView {
@@ -42,6 +40,12 @@ open class UserContract {
          * 登录数据获取
          */
         fun loginSuccess(loginBean: HttpResponse<LoginBean>)
+
+        /**
+         * 验证登录数据的正确性
+         * @return Boolean
+         */
+        fun checkLoginData():Boolean
     }
 
     //注册相关

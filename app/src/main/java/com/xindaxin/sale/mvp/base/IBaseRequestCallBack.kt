@@ -5,6 +5,7 @@ package com.xindaxin.sale.mvp.base
  * 时间：2018-06-23
  * 描述：请求数据反馈的接口
  */
+@Deprecated("已经用封装的BaseObserver来代替")
 interface IBaseRequestCallBack<T> {
 
     /**

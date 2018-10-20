@@ -1,6 +1,7 @@
 package com.xindaxin.sale.ui.activity
 
 import android.os.Handler
+import android.text.TextUtils
 import com.xindaxin.sale.R
 import com.xindaxin.sale.annotation.*
 import com.xindaxin.sale.annotation.Week
@@ -82,23 +83,23 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
 //                    cancel()
 //                }
 //            })
-            TimeUtils.timer(1,object : DefaultObserver<Long>() {
-                override fun onComplete() {
-                    btn_login.text = "登录"
-                    btn_login.isEnabled = true
-                    cancel()
-                }
-
-                override fun onNext(t: Long) {
-                    btn_login.text = String.format("%s s后重新登录",t)
-                    LogUtils.e("countDown", "$t")
-                }
-
-                override fun onError(e: Throwable) {
-                    btn_login.isEnabled = true
-                    cancel()
-                }
-            })
+//            TimeUtils.timer(1,object : DefaultObserver<Long>() {
+//                override fun onComplete() {
+//                    btn_login.text = "登录"
+//                    btn_login.isEnabled = true
+//                    cancel()
+//                }
+//
+//                override fun onNext(t: Long) {
+//                    btn_login.text = String.format("%s s后重新登录",t)
+//                    LogUtils.e("countDown", "$t")
+//                }
+//
+//                override fun onError(e: Throwable) {
+//                    btn_login.isEnabled = true
+//                    cancel()
+//                }
+//            })
         }
     }
 
@@ -121,6 +122,19 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
     override fun loginSuccess(loginBean: HttpResponse<LoginBean>) {
         toast(loginBean.msg)
         Handler().postAtTime({ print("hahaaha") }, 2000)
+    }
+
+    override fun checkLoginData(): Boolean {
+        if (TextUtils.isEmpty(getAccount())) {
+            ToastUtils.showShortToast("账号不能为空")
+            return false
+        }
+
+        if (TextUtils.isEmpty(getPassword())) {
+            ToastUtils.showShortToast("密码不能为空")
+            return false
+        }
+        return true
     }
 
     /**

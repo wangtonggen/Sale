@@ -16,6 +16,7 @@ import retrofit2.http.POST
  * @desc: 用户相关信息的service
  *
  **/
+@Deprecated("已经用CommonService来代替")
 interface UserService {
 
     /**

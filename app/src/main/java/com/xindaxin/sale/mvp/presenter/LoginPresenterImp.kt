@@ -1,10 +1,11 @@
 package com.xindaxin.sale.mvp.presenter
 
 import com.xindaxin.sale.bean.LoginBean
+import com.xindaxin.sale.mvp.base.BaseObserver
 import com.xindaxin.sale.mvp.base.HttpResponse
-import com.xindaxin.sale.mvp.base.IBaseRequestCallBack
 import com.xindaxin.sale.mvp.contract.UserContract
 import com.xindaxin.sale.mvp.model.UserModel
+import com.xindaxin.sale.utils.ToastUtils
 
 /**
  * 创建者：王统根
@@ -17,20 +18,23 @@ class LoginPresenterImp(val view: UserContract.LoginView) : UserContract.LoginPr
         UserModel()
     }
 
-    override fun login(account: String, password: String, imobile: Int) {
-        view.showDialog()
-        userModel.login(account, password, imobile, object : IBaseRequestCallBack<LoginBean> {
-            override fun requestSuccess(data: HttpResponse<LoginBean>) {
-                view.loginSuccess(data)
-            }
+    override fun login(params: Map<String, Any>) {
+        if (view.checkLoginData()) {
+            view.showDialog()
+            userModel.login(params, object : BaseObserver<LoginBean>() {
+                override fun success(data: HttpResponse<LoginBean>) {
+                    view.loginSuccess(data)
+                    //保存数据 并跳转界面 感觉还是要放到Activity或者fragment里面实现会更好
+                }
 
-            override fun requestError() {
-                view.cancelDialog()
-            }
+                override fun error() {
+                    view.cancelDialog()
+                }
 
-            override fun requestComplete() {
-                view.cancelDialog()
-            }
-        })
+                override fun complete() {
+                    view.cancelDialog()
+                }
+            })
+        }
     }
 }

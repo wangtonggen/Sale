@@ -14,4 +14,9 @@ object API {
      * 登录API
      */
     const val URL_LOGIN = "userAction_login.action"
+
+    /**
+     * 注册API
+     */
+    const val URL_REGISTER = "userAction_login.action"
 }

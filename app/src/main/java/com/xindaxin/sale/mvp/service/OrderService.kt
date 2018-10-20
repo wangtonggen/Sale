@@ -7,5 +7,6 @@ package com.xindaxin.sale.mvp.service
  * @desc: 订单类型的service
  *
  **/
+@Deprecated("已经用CommonService来代替")
 interface OrderService {
 }
