@@ -62,11 +62,9 @@ class ServiceFactory private constructor() {
      * 获取httpClient的方法
      */
     private fun getOkHttpClient(): OkHttpClient {
-        //日志显示级别
-        val level = HttpLoggingInterceptor.Level.BODY
         //新建log拦截器
         val loggingInterceptor = HttpLoggingInterceptor { message: String -> LogUtils.e(TAG, "OkHttp====Message:$message") }
-        loggingInterceptor.level = level
+        loggingInterceptor.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE//设置日志显示级别
         val cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(BaseApplication.instance))
         if (httpClientBuilder == null) {
             //添加cookie

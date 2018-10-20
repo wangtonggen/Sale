@@ -6,6 +6,9 @@ import com.xindaxin.sale.utils.sub.SubscriptionManager
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import retrofit2.HttpException
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 /**
  * 创建者：王统根
@@ -37,9 +40,32 @@ abstract class BaseObserver<T> : Observer<HttpResponse<T>> {
         SubscriptionManager.instance.cancelSub(d)
         error()
         LogUtils.e(TAG, e.message!!.toString())//打印错误
+//        else if (t is ApiException) {
+//            errorCode = t.errorCode
+//            msg = t.message ?: "请求失败，请稍后再试..."
+//        } else
+//            if (t is UnknownHostException) {
+//            errorCode = HttpStatus.SOCKET_TIMEOUT
+//            msg = "请检查网络"
+//        } else if (t is SocketTimeoutException) {
+//            errorCode = HttpStatus.SOCKET_TIMEOUT
+//            msg = "网络连接超时，请稍后再试..."
+//        } else if (t is ConnectException) {
+//            errorCode = HttpStatus.SOCKET_TIMEOUT
+//            msg = "网络连接失败，请稍后再试..."
+//        }
         when (e) {//异常统一处理
             is HttpException -> {//网络错误
 //               ToastUtils.showNetError()
+            }
+            is UnknownHostException -> {//请检查网络
+
+            }
+            is SocketTimeoutException -> {//网络连接超时，请稍后再试...
+
+            }
+            is ConnectException -> {//网络连接失败，请稍后再试...
+
             }
             else -> ToastUtils.showErrorToast()
         }

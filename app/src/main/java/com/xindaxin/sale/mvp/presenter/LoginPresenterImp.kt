@@ -3,7 +3,7 @@ package com.xindaxin.sale.mvp.presenter
 import com.xindaxin.sale.bean.LoginBean
 import com.xindaxin.sale.mvp.base.HttpResponse
 import com.xindaxin.sale.mvp.base.IBaseRequestCallBack
-import com.xindaxin.sale.mvp.contract.LoginContract
+import com.xindaxin.sale.mvp.contract.UserContract
 import com.xindaxin.sale.mvp.model.UserModel
 
 /**
@@ -11,7 +11,7 @@ import com.xindaxin.sale.mvp.model.UserModel
  * 时间：2018-06-23
  * 描述：登录的presenter
  */
-class LoginPresenterImp(val view: LoginContract.LoginView) : LoginContract.LoginPresenter {
+class LoginPresenterImp(val view: UserContract.LoginView) : UserContract.LoginPresenter {
     private val userModel: UserModel by lazy {
         //当使用的时候在初始化
         UserModel()

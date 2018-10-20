@@ -11,7 +11,7 @@ import com.xindaxin.sale.listener.OnPermissionListener
  * @author: wtg by 2018/10/7 0007
  *
  *
- * @desc: 权限的工具类
+ * @desc: 权限的工具类（增加添加权限去重）
  *
  **/
 class PermissionUtils private constructor() {

@@ -10,8 +10,11 @@ import com.xindaxin.sale.mvp.base.IBaseDialogView
  * 时间：2018-07-23
  * 描述：登录的契约类
  */
-open class LoginContract {
+open class UserContract {
 
+    /**
+     * 登录相关
+     */
     interface LoginPresenter : IBasePresenter {
 
         /**
@@ -40,4 +43,20 @@ open class LoginContract {
          */
         fun loginSuccess(loginBean: HttpResponse<LoginBean>)
     }
+
+    //注册相关
+
+    interface RegisterPresenter : IBasePresenter {
+        /**
+         * 全部使用map 特殊情况下,特殊处理
+         * @param params Map<String,String>
+         */
+        fun register(params: Map<String, String>)
+    }
+    interface RegisterView : IBaseDialogView{
+        fun getAccount():String
+        fun getPassword():String
+    }
+
+    //修改信息相关
 }

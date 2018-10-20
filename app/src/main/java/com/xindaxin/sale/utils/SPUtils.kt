@@ -13,7 +13,6 @@ import com.xindaxin.sale.base.BaseApplication
 object SPUtils {
     private const val SP_NAME = "sale"
     private var preferences: SharedPreferences? = null
-
     private fun instance() {
         if (preferences == null) {
             preferences = BaseApplication.instance.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
