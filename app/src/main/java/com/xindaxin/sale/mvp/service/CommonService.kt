@@ -23,7 +23,7 @@ interface CommonService {
      */
     @FormUrlEncoded
     @POST()
-    fun <T> reuqestPost(@Url url: String,@FieldMap params:Map<String,Any>): BaseObservable<T>
+    fun <T> requestPost(@Url url: String, @FieldMap params: Map<String, Any>): BaseObservable<T>
 
     /**
      * 统一的get方式请求?后面没有参数的情况
@@ -31,7 +31,7 @@ interface CommonService {
      * @return BaseObservable<T>
      */
     @GET
-    fun <T> requestGet(@Url url: String):BaseObservable<T>
+    fun <T> requestGet(@Url url: String): BaseObservable<T>
 
     /**
      * 有参数的get请求(参数在?之后)
@@ -39,7 +39,7 @@ interface CommonService {
      * @param params Map<String, Any> 参数
      */
     @GET
-    fun <T> requestQuery(@Url url: String,@QueryMap params: Map<String, Any>):BaseObservable<T>
+    fun <T> requestQuery(@Url url: String, @QueryMap params: Map<String, Any>): BaseObservable<T>
 
     /**
      * 统一的下载文件
@@ -59,5 +59,5 @@ interface CommonService {
      */
     @Multipart
     @POST()
-    fun <T> uploadFiles(@Url url: String,@PartMap params: Map<String, RequestBody>): Observable<HttpResponse<T>>
+    fun <T> uploadFiles(@Url url: String, @PartMap params: Map<String, RequestBody>): Observable<HttpResponse<T>>
 }

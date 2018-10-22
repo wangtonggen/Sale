@@ -5,7 +5,6 @@ import com.xindaxin.sale.mvp.base.BaseObserver
 import com.xindaxin.sale.mvp.base.HttpResponse
 import com.xindaxin.sale.mvp.contract.UserContract
 import com.xindaxin.sale.mvp.model.UserModel
-import com.xindaxin.sale.utils.ToastUtils
 
 /**
  * 创建者：王统根

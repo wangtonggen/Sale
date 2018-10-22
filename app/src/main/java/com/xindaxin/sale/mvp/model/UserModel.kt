@@ -3,11 +3,6 @@ package com.xindaxin.sale.mvp.model
 import com.xindaxin.sale.API.API
 import com.xindaxin.sale.bean.LoginBean
 import com.xindaxin.sale.mvp.base.BaseObserver
-import com.xindaxin.sale.mvp.base.HttpResponse
-import com.xindaxin.sale.mvp.base.IBaseRequestCallBack
-import com.xindaxin.sale.mvp.base.ServiceFactory
-import com.xindaxin.sale.mvp.service.CommonService
-import com.xindaxin.sale.mvp.service.UserService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -26,7 +21,7 @@ class UserModel : BaseModel(){
      * @param observer 数据返回接口
      */
     fun login(params:Map<String,Any>, observer: BaseObserver<LoginBean>) {
-        commonService.reuqestPost<LoginBean>(API.URL_LOGIN,params).subscribeOn(Schedulers.io())
+        commonService.requestPost<LoginBean>(API.URL_LOGIN,params).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer)
     }
@@ -37,7 +32,7 @@ class UserModel : BaseModel(){
      * @param observer BaseObserver<String>
      */
     fun register(params: Map<String, Any>, observer: BaseObserver<String>) {
-        commonService.reuqestPost<String>(API.URL_REGISTER,params)
+        commonService.requestPost<String>(API.URL_REGISTER,params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
