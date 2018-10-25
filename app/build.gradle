@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 //
 apply plugin: 'kotlin-android-extensions'
 
+//apply plugin: 'org.greenrobot.greendao' // apply plugin
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -18,11 +20,11 @@ android {
     buildTypes {
         release {
             //是否启用混淆
-            minifyEnabled true
+            minifyEnabled false
             // Zipalign优化
             zipAlignEnabled true
             // 移除无用的resource文件
-            shrinkResources true
+//            shrinkResources true
             //是否打印log
             buildConfigField "boolean", "LOG", "false"
             //正式服务器
@@ -36,11 +38,11 @@ android {
         }
         debug {
             //是否启用混淆
-            minifyEnabled true
+            minifyEnabled false
             // Zipalign优化
             zipAlignEnabled true
             // 移除无用的resource文件
-            shrinkResources true
+//            shrinkResources true
             //是否打印log
             buildConfigField "boolean", "LOG", "true"
             //测试服务器
@@ -61,6 +63,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildToolsVersion '27.0.3'
+
 }
 
 dependencies {
@@ -97,4 +100,9 @@ dependencies {
     //下拉刷新上拉加载
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-5'
+
+    //数据库操作
+//    implementation "org.greenrobot:greendao:$greenDao_version"
+    //数据库操作
+    implementation "org.litepal.android:kotlin:$litepal_version"
 }

@@ -3,6 +3,8 @@
 buildscript {
     ext.kotlin_version = '1.2.71'
     ext.anko_version = '0.10.5'
+    ext.greenDao_version = '3.2.2'
+    ext.litepal_version = '3.0.0'
     repositories {
         google()
         jcenter()
@@ -10,6 +12,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//        classpath "org.greenrobot:greendao-gradle-plugin:$greenDao_version" // add plugin
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

@@ -73,7 +73,6 @@ abstract class BaseActivity : AppCompatActivity() {
         toolbar.navigationIcon = null
     }
 
-
     /**
      * 获取视图id
      */

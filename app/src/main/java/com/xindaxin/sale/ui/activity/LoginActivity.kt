@@ -7,6 +7,8 @@ import com.xindaxin.sale.annotation.*
 import com.xindaxin.sale.annotation.Week
 import com.xindaxin.sale.base.BaseActivity
 import com.xindaxin.sale.bean.LoginBean
+import com.xindaxin.sale.db.entity.OrderEntity
+import com.xindaxin.sale.db.entity.UserEntity
 import com.xindaxin.sale.mvp.base.HttpResponse
 import com.xindaxin.sale.mvp.contract.UserContract
 import com.xindaxin.sale.mvp.presenter.LoginPresenterImp
@@ -15,6 +17,8 @@ import io.reactivex.observers.DefaultObserver
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.view_toolbar.*
 import org.jetbrains.anko.toast
+import org.litepal.LitePal
+import org.litepal.extension.findAll
 
 /**
  * 创建者：王统根
@@ -35,8 +39,8 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
     override fun initView() {
         initNoIconToolbar(toolbar1, R.string.title_login)
         loginPresenter = LoginPresenterImp(this)
-        val test = "i am li"
-        list.forEach { tv_test.text = "$it" }
+//        val test = "i am li"
+        list.forEach { tv_test.text = String.format("%s",it)}
         tv_test.text = "${R.string.app_name}"
         setCurrentDay(1)
         @Week.WeekDays
@@ -46,6 +50,26 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
             TIP_B -> {toast("$TIP_B")}
             TIP_C -> {toast("$TIP_C")}
         }
+
+        val userEntity = UserEntity()
+        userEntity.userId = 0
+        userEntity.userName="王统根"
+        userEntity.account="15727960191"
+        userEntity.password="123456"
+        userEntity.headImageUrl="http://192.168.2.23/image"
+        userEntity.idCard = "412326199806186033"
+        userEntity.birthDay = "1992-04-08"
+        val result = userEntity.save()
+        LogUtils.e(TAG,result)
+//        val orderEntity = OrderEntity()
+//        orderEntity.orderId = 0
+//        orderEntity.title = "呵呵"
+//        var result1 = orderEntity.save()
+//        LogUtils.e(TAG,result1)
+        val users = LitePal.findAll<UserEntity>()
+        users.forEach { LogUtils.e(TAG,"userId=${it.userId}") }
+//        val orders = LitePal.findAll(OrderEntity::class.java)
+//        orders.forEach { LogUtils.e(TAG,"orderId=${it.orderId}") }
 //        et_account.setText("$test")//给editText 赋值时要使用setText方法
 //        et_account.text ="hello"
 

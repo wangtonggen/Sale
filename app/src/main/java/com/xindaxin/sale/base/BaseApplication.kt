@@ -1,6 +1,7 @@
 package com.xindaxin.sale.base
 
 import android.app.Application
+import org.litepal.LitePal
 
 /**
  * 创建者：王统根
@@ -16,5 +17,6 @@ class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        LitePal.initialize(this)
     }
 }
