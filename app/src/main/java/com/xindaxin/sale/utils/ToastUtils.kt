@@ -36,30 +36,30 @@ object ToastUtils {
      *
      * @param resId 要显示内容的资源id
      */
-    fun showShortToast(@StringRes resId: Int) = Toast.makeText(BaseApplication.instance, StringUtils.getString(resId), Toast.LENGTH_SHORT).show()
+    fun showShortToast(@StringRes resId: Int) = showShortToast(StringUtils.getString(resId))
 
 
     /**
      * 功能暂未开放提示
      */
-    fun showFunctionDispartToast() = ToastUtils.showShortToast("功能暂未开放")
+    fun showFunctionDispartToast() = showShortToast("功能暂未开放")
 
 
     /**
      * 数据为空
      */
-    fun showNullToast() = ToastUtils.showShortToast("输入的内容不能为空")
+    fun showNullToast() = showShortToast("输入的内容不能为空")
 
 
     /**
      * 无网络
      */
-    fun showNoNetToast() = ToastUtils.showShortToast("暂无网络,请检查下网络")
+    fun showNoNetToast() = showShortToast("暂无网络,请检查下网络")
 
     /**
      * 没有数据
      */
-    fun showNoDataToast() = ToastUtils.showShortToast("暂无更多数据")
+    fun showNoDataToast() = showShortToast("暂无更多数据")
 
 
     /**

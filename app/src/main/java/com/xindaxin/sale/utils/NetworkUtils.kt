@@ -45,7 +45,7 @@ object NetworkUtils {
     @RequiresPermission(ACCESS_NETWORK_STATE)
     fun isConnected(): Boolean {
         val info = getActiveNetworkInfo()
-        return info != null && info!!.isConnected
+        return info != null && info.isConnected
     }
 
     /**

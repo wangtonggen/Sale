@@ -52,9 +52,13 @@ object RegexUtils {
 
 
     /**
-     * 日期验证 yyyy-mm-dd
+     * 验证日期
+     * @param input String 日期
+     * @param regex String 正则表达式 默认验证yyyy-MM-dd类型
+     * @return Boolean
      */
-    fun isDate(input: String): Boolean = isMatch(RegexConstant.REGEX_DATE, input)
+    @JvmOverloads
+    fun isDate(input: String,regex:String=RegexConstant.REGEX_DATE): Boolean = isMatch(regex, input)
 
 
     /**

@@ -25,8 +25,8 @@ object FileUtils {
     /**
      * 判断文件是否存在
      */
-    fun isFileExists(file: File?): Boolean {
-        return file != null && file.exists()
+    fun isFileExists(file: File): Boolean {
+        return file.exists()
     }
 
     /**
@@ -41,7 +41,7 @@ object FileUtils {
      */
     fun rename(file: File, newName: String): Boolean {
         // file is null then return false
-        if (file == null) return false
+//        if (file == null) return false
         // file doesn't exist then return false
         if (!file.exists()) return false
         // the new name equals old name then return true
@@ -61,8 +61,8 @@ object FileUtils {
     /**
      * 判断是否是文件夹
      */
-    fun isDir(file: File?): Boolean {
-        return file != null && file.exists() && file.isDirectory
+    fun isDir(file: File): Boolean{
+        return file.exists() && file.isDirectory
     }
 
     /**
@@ -75,8 +75,8 @@ object FileUtils {
     /**
      * 是否是文件
      */
-    fun isFile(file: File?): Boolean {
-        return file != null && file.exists() && file.isFile
+    fun isFile(file: File): Boolean {
+        return file.exists() && file.isFile
     }
 
     /**
@@ -89,8 +89,8 @@ object FileUtils {
     /**
      * 创建文件
      */
-    fun createFile(file: File?): Boolean {
-        return file != null && if (file.exists()) false else file.createNewFile()
+    fun createFile(file: File): Boolean {
+        return if (file.exists()) false else file.createNewFile()
     }
 
     /**
@@ -103,7 +103,7 @@ object FileUtils {
     /**
      * 创建文件夹
      */
-    fun createDir(file: File?): Boolean {
-        return file != null && if (file.exists()) false else file.mkdirs()
+    fun createDir(file: File): Boolean {
+        return if (file.exists()) false else file.mkdirs()
     }
 }

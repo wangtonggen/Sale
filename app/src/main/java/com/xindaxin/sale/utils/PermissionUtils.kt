@@ -65,11 +65,10 @@ class PermissionUtils private constructor() {
             listener.onPermissionGranted()
             return
         }
-        if (permissions != null)
-            permissions!!.forEach {
-                if (!localPermissions.contains(it))
-                    localPermissions.add(it)
-            }
+        permissions!!.forEach {
+            if (!localPermissions.contains(it))
+                localPermissions.add(it)
+        }
         ActivityCompat.requestPermissions(activity, localPermissions.toTypedArray(), requestCode)
     }
 
