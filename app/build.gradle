@@ -58,6 +58,11 @@ android {
     sourceSets.main {
         jniLibs.srcDirs = ['libs'] // <-- Set your folder here!
     }
+    repositories {
+        flatDir {
+            dirs 'libs' // 让项目可以直接找到aar
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -105,4 +110,7 @@ dependencies {
 //    implementation "org.greenrobot:greendao:$greenDao_version"
     //数据库操作
     implementation "org.litepal.android:kotlin:$litepal_version"
+
+    //引用aar(适配不同机型的高度,宽度,字体大小)
+    implementation(name: 'commonsize_750', ext: 'aar')
 }
