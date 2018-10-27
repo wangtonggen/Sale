@@ -28,8 +28,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:id="@id/et_account"
                     style="@style/editText_common_style"
-                    android:hint="@string/hint_account"
-                    android:text="BAA1007" />
+                    android:hint="@string/hint_account" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -40,14 +39,27 @@
                     android:id="@id/et_password"
                     style="@style/editText_common_style"
                     android:hint="@string/hint_password"
-                    android:inputType="textPassword"
-                    android:text="111111" />
+                    android:inputType="textPassword"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@id/btn_login"
                 style="@style/button_common_style"
                 android:text="@string/hint_login" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/b"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

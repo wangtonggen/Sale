@@ -21,7 +21,8 @@ class UserModel : BaseModel(){
      * @param observer 数据返回接口
      */
     fun login(params:Map<String,Any>, observer: BaseObserver<LoginBean>) {
-        commonService.requestPost<LoginBean>(API.URL_LOGIN,params).subscribeOn(Schedulers.io())
+        commonService.requestPost<LoginBean>(API.URL_LOGIN,params)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer)
     }
