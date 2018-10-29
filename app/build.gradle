@@ -81,6 +81,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //kotlin和Anko
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+//    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.71‘
     implementation "org.jetbrains.anko:anko:$anko_version"
     //数据库操作
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
