@@ -13,7 +13,6 @@ import org.jetbrains.annotations.NotNull
  *
  **/
 object SystemUtils {
-
     /**
      * 拨打电话(跳转到拨打电话界面)
      * @param phoneNum String
@@ -39,11 +38,16 @@ object SystemUtils {
             ToastUtils.showShortToast("手机号不能为空")
             return
         }
-        val intent = Intent(Intent.ACTION_CALL)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        val data = Uri.parse("tel:$phoneNum")
-        intent.data = data
-        BaseApplication.instance.startActivity(intent)
+        try {
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            val data = Uri.parse("tel:$phoneNum")
+            intent.data = data
+            BaseApplication.instance.startActivity(intent)
+        } catch (e: SecurityException) {
+            e.printStackTrace()
+        }
+
     }
 
     /**
