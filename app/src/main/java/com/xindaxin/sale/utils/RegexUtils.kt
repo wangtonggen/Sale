@@ -58,7 +58,7 @@ object RegexUtils {
      * @return Boolean
      */
     @JvmOverloads
-    fun isDate(input: String,regex:String=RegexConstant.REGEX_DATE): Boolean = isMatch(regex, input)
+    fun isDate(input: String, regex: String = RegexConstant.REGEX_DATE): Boolean = isMatch(regex, input)
 
 
     /**

@@ -33,7 +33,7 @@ import org.litepal.extension.findAll
  */
 class LoginActivity : BaseActivity(), UserContract.LoginView {
     private lateinit var loginPresenter: LoginPresenterImp
-        private var list = listOf("111","222","333","444")
+    private var list = listOf("111", "222", "333", "444")
 
     @Week.WeekDays
     private var currentDay = TIP_A
@@ -46,15 +46,21 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
         initNoIconToolbar(toolbar1, R.string.title_login)
         loginPresenter = LoginPresenterImp(this)
 //        val test = "i am li"
-        list.forEach { tv_test.text = String.format("%s",it)}
+        list.forEach { tv_test.text = String.format("%s", it) }
         tv_test.text = "${R.string.app_name}"
         setCurrentDay(1)
         @Week.WeekDays
         val today = getCurrentDay()
-        when(today){
-            TIP_A -> {toast("$TIP_A")}
-            TIP_B -> {toast("$TIP_B")}
-            TIP_C -> {toast("$TIP_C")}
+        when (today) {
+            TIP_A -> {
+                toast("$TIP_A")
+            }
+            TIP_B -> {
+                toast("$TIP_B")
+            }
+            TIP_C -> {
+                toast("$TIP_C")
+            }
         }
 
 //        val userEntity = UserEntity()
@@ -198,12 +204,12 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
      * 参数只能传入在声明范围内的整型，不然编译通不过
      * @param currentDay
      */
-     private fun setCurrentDay(@Week.WeekDays currentDay:Int) {
+    private fun setCurrentDay(@Week.WeekDays currentDay: Int) {
         this.currentDay = currentDay
     }
 
     @Week.WeekDays
-    fun getCurrentDay():Int {
+    fun getCurrentDay(): Int {
         return currentDay
     }
 

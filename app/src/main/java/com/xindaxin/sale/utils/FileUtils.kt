@@ -61,7 +61,7 @@ object FileUtils {
     /**
      * 判断是否是文件夹
      */
-    fun isDir(file: File): Boolean{
+    fun isDir(file: File): Boolean {
         return file.exists() && file.isDirectory
     }
 

@@ -7,7 +7,7 @@ package com.xindaxin.sale.db
  * @desc:
  *
  **/
-
+@Deprecated("已过时用litPal代替")
 object User {
     val TABLE_NAME = "t_user"
     val _ID = "_id"

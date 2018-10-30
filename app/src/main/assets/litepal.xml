@@ -36,7 +36,7 @@
     <list>
         <!--映射文件,添加一个实体类的时候就需要添加对应的映射文件-->
         <mapping class="com.xindaxin.sale.db.entity.UserEntity" />
-        <mapping class="com.xindaxin.sale.db.entity.OrderEntity"/>
+        <mapping class="com.xindaxin.sale.db.entity.OrderEntity" />
     </list>
 
     <!--

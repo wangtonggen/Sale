@@ -21,7 +21,7 @@ open class UserContract {
          * 登录操作
          * @param params 参数
          */
-        fun login(params:Map<String,Any>)
+        fun login(params: Map<String, Any>)
     }
 
     interface LoginView : IBaseDialogView {
@@ -45,7 +45,7 @@ open class UserContract {
          * 验证登录数据的正确性
          * @return Boolean
          */
-        fun checkLoginData():Boolean
+        fun checkLoginData(): Boolean
     }
 
     //注册相关
@@ -57,9 +57,10 @@ open class UserContract {
          */
         fun register(params: Map<String, String>)
     }
-    interface RegisterView : IBaseDialogView{
-        fun getAccount():String
-        fun getPassword():String
+
+    interface RegisterView : IBaseDialogView {
+        fun getAccount(): String
+        fun getPassword(): String
     }
 
     //修改信息相关

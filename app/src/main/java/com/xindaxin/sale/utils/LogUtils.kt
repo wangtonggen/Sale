@@ -10,17 +10,39 @@ import com.xindaxin.sale.BuildConfig
  */
 object LogUtils {
 
-    fun e(tag: String, message: Any?) {
+    private const val TAG = "sale"
+    @JvmOverloads
+    fun e(tag: String = TAG, message: Any?) {
         if (BuildConfig.LOG) {
-            var msg = "$message"
-            Log.e(tag, msg)
+            Log.e(tag, "$message")
         }
     }
 
-    fun d(tag: String, message: Any?) {
+    @JvmOverloads
+    fun d(tag: String = TAG, message: Any?) {
         if (BuildConfig.LOG) {
-            var msg = "$message"
-            Log.e(tag, msg)
+            Log.e(tag, "$message")
+        }
+    }
+
+    @JvmOverloads
+    fun i(tag: String = TAG, message: Any?) {
+        if (BuildConfig.LOG) {
+            Log.i(tag, "$message")
+        }
+    }
+
+    @JvmOverloads
+    fun v(tag: String = TAG, message: Any?) {
+        if (BuildConfig.LOG) {
+            Log.v(tag, "$message")
+        }
+    }
+
+    @JvmOverloads
+    fun w(tag: String = TAG, message: Any?) {
+        if (BuildConfig.LOG) {
+            Log.w(tag, "$message")
         }
     }
 }

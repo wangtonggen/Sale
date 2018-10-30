@@ -13,6 +13,7 @@ const val TIP_A = 1
 const val TIP_B = 2
 const val TIP_C = 3
 const val TIP_D = 4
+
 interface Week {
     @IntDef(TIP_A, TIP_B, TIP_C)
     @Retention(AnnotationRetention.SOURCE)

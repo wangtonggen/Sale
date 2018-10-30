@@ -10,7 +10,7 @@ import android.os.CountDownTimer
  **/
 class CountDownUtils {
     private var mTimer: CountDownTimer? = null
-    private val interval = 1000
+    private val mInterval = 1000
 
     /**
      * 开始倒计时
@@ -19,7 +19,8 @@ class CountDownUtils {
      * @param minuteInterval 时间间隔（单位：分）
      * @param callBack
      */
-    fun start(startTime: Long, minuteInterval: Int, callBack: OnCountDownCallBack?) {
+    @JvmOverloads
+    fun start(startTime: Long, minuteInterval: Int, callBack: OnCountDownCallBack?, interval: Int = mInterval) {
         val lengthTime = (minuteInterval * 60 * interval).toLong()
         //查看是否为毫秒的时间戳
         val isMillSecond = startTime.toString().length == 13
@@ -41,7 +42,8 @@ class CountDownUtils {
      * @param endTime   结束时的时间戳
      * @param callBack
      */
-    fun start(startTime: Long, endTime: Long, callBack: OnCountDownCallBack?) {
+    @JvmOverloads
+    fun start(startTime: Long, endTime: Long, callBack: OnCountDownCallBack?, interval: Int = mInterval) {
         //查看是否为毫秒的时间戳
         val isMillSecond = startTime.toString().length == 13
         val isMillSecond1 = endTime.toString().length == 13
@@ -60,7 +62,8 @@ class CountDownUtils {
      * @param endTime  结束时间（时间戳秒级别）需要转换成毫秒级别*1000
      * @param callBack
      */
-    fun start(endTime: Long, callBack: OnCountDownCallBack?) {
+    @JvmOverloads
+    fun start(endTime: Long, callBack: OnCountDownCallBack?, interval: Int = mInterval) {
         val curTime = System.currentTimeMillis()
         val isMillSecond = endTime.toString().length == 13
         val endTime1 = endTime * if (isMillSecond) 1 else interval

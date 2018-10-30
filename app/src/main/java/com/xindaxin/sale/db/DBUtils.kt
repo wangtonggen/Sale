@@ -13,6 +13,7 @@ import org.jetbrains.anko.db.select
  * @desc:
  *
  **/
+@Deprecated("已过时,用liePal代替")
 class DBUtils(context: Context, var tableName: String) {
     var dbHelper: DBHelper
 

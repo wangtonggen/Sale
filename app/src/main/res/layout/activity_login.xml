@@ -21,6 +21,7 @@
                 android:id="@+id/tv_test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -39,7 +40,7 @@
                     android:id="@id/et_password"
                     style="@style/editText_common_style"
                     android:hint="@string/hint_password"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatButton
@@ -55,6 +56,7 @@
                     android:id="@+id/b"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/a"
                     android:layout_width="match_parent"

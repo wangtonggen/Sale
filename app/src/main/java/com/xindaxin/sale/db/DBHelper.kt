@@ -8,6 +8,7 @@ import org.jetbrains.anko.db.*
  * @author: wtg by 2018/9/8 0008
  * @desc: 数据库操作类
  */
+@Deprecated("过时用litPal代替")
 class DBHelper(context: Context) : ManagedSQLiteOpenHelper(context, DB_NAME, null, DATABASE_VERSION) {
     companion object {
         private val DB_NAME = "sale.db"//数据库的名字
