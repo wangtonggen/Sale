@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
  * @desc: 用户的数据处理类
  *
  **/
-class UserModel : BaseModel() {
+class UserModel : CommonModel() {
 //    private val userService: UserService by lazy { ServiceFactory.getInstance().createService(UserService::class.java) }
     /**
      * 登录
@@ -36,6 +36,6 @@ class UserModel : BaseModel() {
         commonService.requestPost<String>(API.URL_REGISTER, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
+                .subscribe(observer)
     }
 }

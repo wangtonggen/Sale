@@ -6,62 +6,74 @@
 
     <include layout="@layout/view_toolbar" />
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
-
-        <LinearLayout
+        android:layout_height="match_parent">
+        <!--黑色背景遮罩层，平时隐藏 -->
+        <View
+            android:id="@+id/gray_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="#66000000"
+            android:visibility="gone" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:orientation="vertical">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@id/et_account"
-                    style="@style/editText_common_style"
-                    android:hint="@string/hint_account" />
-            </android.support.design.widget.TextInputLayout>
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@id/et_password"
-                    style="@style/editText_common_style"
-                    android:hint="@string/hint_password"
-                    android:inputType="textPassword" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@id/btn_login"
-                style="@style/button_common_style"
-                android:text="@string/hint_login" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/b"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content">
 
-                <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/a"
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@id/et_account"
+                        style="@style/editText_common_style"
+                        android:hint="@string/hint_account" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@id/et_password"
+                        style="@style/editText_common_style"
+                        android:hint="@string/hint_password"
+                        android:inputType="textPassword" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@id/btn_login"
+                    style="@style/button_common_style"
+                    android:text="@string/hint_login" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 </LinearLayout>

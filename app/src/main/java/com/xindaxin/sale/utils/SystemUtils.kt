@@ -3,6 +3,7 @@ package com.xindaxin.sale.utils
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.view.View
 import com.xindaxin.sale.base.BaseApplication
 import org.jetbrains.annotations.NotNull
 
@@ -20,13 +21,13 @@ object SystemUtils {
     fun dialPhone(@NotNull phoneNum: String) {
         if (phoneNum.isEmpty()) {
             ToastUtils.showShortToast("手机号不能为空")
-            return
+        } else {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            val data = Uri.parse("tel:$phoneNum")
+            intent.data = data
+            BaseApplication.instance.startActivity(intent)
         }
-        val intent = Intent(Intent.ACTION_DIAL)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        val data = Uri.parse("tel:$phoneNum")
-        intent.data = data
-        BaseApplication.instance.startActivity(intent)
     }
 
     /**
@@ -37,17 +38,17 @@ object SystemUtils {
         if (phoneNum.isEmpty()) {
             ToastUtils.showShortToast("手机号不能为空")
             return
+        } else {
+            try {
+                val intent = Intent(Intent.ACTION_CALL)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                val data = Uri.parse("tel:$phoneNum")
+                intent.data = data
+                BaseApplication.instance.startActivity(intent)
+            } catch (e: SecurityException) {
+                e.printStackTrace()
+            }
         }
-        try {
-            val intent = Intent(Intent.ACTION_CALL)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            val data = Uri.parse("tel:$phoneNum")
-            intent.data = data
-            BaseApplication.instance.startActivity(intent)
-        } catch (e: SecurityException) {
-            e.printStackTrace()
-        }
-
     }
 
     /**

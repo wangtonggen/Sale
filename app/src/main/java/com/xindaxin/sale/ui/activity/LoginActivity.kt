@@ -1,8 +1,10 @@
 package com.xindaxin.sale.ui.activity
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.text.TextUtils
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -12,6 +14,8 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.xindaxin.sale.R
 import com.xindaxin.sale.annotation.*
+import com.xindaxin.sale.annotation.Test.*
+//import com.xindaxin.sale.annotation.Test.ONE
 import com.xindaxin.sale.annotation.Week
 import com.xindaxin.sale.base.BaseActivity
 import com.xindaxin.sale.bean.LoginBean
@@ -25,6 +29,10 @@ import kotlinx.android.synthetic.main.view_toolbar.*
 import org.jetbrains.anko.toast
 import org.litepal.LitePal
 import org.litepal.extension.findAll
+import android.support.v7.widget.ViewUtils
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.wrapContent
+
 
 /**
  * 创建者：王统根
@@ -35,8 +43,8 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
     private lateinit var loginPresenter: LoginPresenterImp
     private var list = listOf("111", "222", "333", "444")
 
-    @Week.WeekDays
-    private var currentDay = TIP_A
+    @TestAnn
+    private var currentDay = ONE
 
     override fun getResLayoutId(): Int {
         return R.layout.activity_login
@@ -48,18 +56,17 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
 //        val test = "i am li"
         list.forEach { tv_test.text = String.format("%s", it) }
         tv_test.text = "${R.string.app_name}"
-        setCurrentDay(1)
-        @Week.WeekDays
+        setCurrentDay(THREE)
         val today = getCurrentDay()
         when (today) {
-            TIP_A -> {
-                toast("$TIP_A")
+            ONE -> {
+                toast("$ONE")
             }
-            TIP_B -> {
-                toast("$TIP_B")
+            TWO -> {
+                toast("$TWO")
             }
-            TIP_C -> {
-                toast("$TIP_C")
+            THREE -> {
+                toast("$THREE")
             }
         }
 
@@ -122,8 +129,11 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
     }
 
     override fun onClickListener() {
+        val bottomView = View.inflate(this, R.layout.pop_test, null)
         btn_login.setOnClickListener {
-            btn_login.isEnabled = false
+            PopUtils.showDownPop(this, bottomView, gray_layout, toolbar1)
+
+//            btn_login.isEnabled = false
 //            loginPresenter.login(getAccount(), getPassword(), 222777)
 //            showDialog()
 //            Handler().postAtTime({
@@ -204,11 +214,10 @@ class LoginActivity : BaseActivity(), UserContract.LoginView {
      * 参数只能传入在声明范围内的整型，不然编译通不过
      * @param currentDay
      */
-    private fun setCurrentDay(@Week.WeekDays currentDay: Int) {
+    private fun setCurrentDay(@TestAnn currentDay: Int) {
         this.currentDay = currentDay
     }
 
-    @Week.WeekDays
     fun getCurrentDay(): Int {
         return currentDay
     }

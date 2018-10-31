@@ -15,4 +15,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!--谈pop的样式-->
+    <style name="pop_bottom_to_up_style">
+        <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>
+    </style>
+    <!--谈pop的样式-->
+    <style name="pop_vertical_style">
+        <item name="android:windowEnterAnimation">@anim/set_vertical_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/set_vertical_out_anim</item>
+    </style>
 </resources>
